@@ -75,15 +75,16 @@ function GameScreen(props) {
         <FlatList
           data={guessArray}
           renderItem={(itemData) => (
-            <Text>
-              #{itemData.index}. Your Computer Guess is {itemData.item}
-            </Text>
+            <View style={styles.logListItem}>
+              <Text style={styles.logListItemText}>
+                #{itemData.index+1}. Your Computer Guess is {itemData.item}
+              </Text>
+            </View>
           )}
           keyExtractor={(item) => {
             item;
           }}
         />
-        <Text>asd</Text>
       </View>
     </View>
   );
@@ -102,4 +103,17 @@ const styles = StyleSheet.create({
   logContainer: {
     // flex: 1,
   },
+  logListItem :{
+    borderRadius : 15,
+    height : 40,
+    backgroundColor : 'pink',
+    overflow : 'hidden',
+    margin : 5,
+    alignItems : 'center',
+    justifyContent : 'center'
+  },
+  logListItemText : {
+    fontSize: 18,
+    color : 'red'
+  }
 });
