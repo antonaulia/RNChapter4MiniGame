@@ -10,7 +10,7 @@ function GameOverScreen(props) {
         <PrimaryButton onPress={props.onRestartGame}>Restart !</PrimaryButton>
       </View>
         
-        <Text>whatever</Text>
+        <Title>Your computer needed {props.roundsNeeded} rounds to guess your number : {props.userChosenNumber}</Title>
     </View>
   );
 }

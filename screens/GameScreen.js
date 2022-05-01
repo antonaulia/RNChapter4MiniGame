@@ -24,7 +24,8 @@ function GameScreen(props) {
 
   useEffect(() => {
     if (currentGuess === props.userChosenNumber) {
-      props.gamesIsOverHandler(), (maxBound = 100);
+      props.gamesIsOverHandler(guessArray.length); 
+      maxBound = 100;
       minBound = 1;
     }
   }, [currentGuess, props.userChosenNumber, props.gamesIsOverHandler]);

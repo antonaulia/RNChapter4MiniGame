@@ -8,12 +8,15 @@ import GameOverScreen from "./screens/GameOverScreen";
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [roundsNeeded, setRoundsNeeded] = useState(0);
+
   function userNumberHandler(userNumber) {
     setGameIsOver(false);
     setUserNumber(userNumber);
   }
 
-  function gamesIsOverHandler() {
+  function gamesIsOverHandler(roundsNeeded) {
+    setRoundsNeeded(roundsNeeded)
     setGameIsOver(true);
   }
 
@@ -33,7 +36,7 @@ export default function App() {
   }
 
   if (userNumber && gameIsOver) {
-    screen = <GameOverScreen onRestartGame={gameRestartHandler} />;
+    screen = <GameOverScreen onRestartGame={gameRestartHandler} roundsNeeded={roundsNeeded} userChosenNumber={userNumber} />;
   }
 
   return (
