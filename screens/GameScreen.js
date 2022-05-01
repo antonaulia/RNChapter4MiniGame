@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { Text, View, StyleSheet, Alert, FlatList } from "react-native";
 import Title from "../components/Title";
 import { useState, useEffect } from "react";
 import NumberContainer from "../components/NumberContainer";
@@ -18,18 +18,16 @@ let minBound = 1;
 let maxBound = 100;
 
 function GameScreen(props) {
-  const initialGuess = generateRandomBetween(
-    1,
-    100,
-    props.userChosenNumber
-  );
+  const initialGuess = generateRandomBetween(1, 100, props.userChosenNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guessArray, setGuessArray] = useState([initialGuess]);
 
-  useEffect(()=>{
-    if (currentGuess === props.userChosenNumber){
-      props.gamesIsOverHandler()
+  useEffect(() => {
+    if (currentGuess === props.userChosenNumber) {
+      props.gamesIsOverHandler(), (maxBound = 100);
+      minBound = 1;
     }
-  }, [currentGuess, props.userChosenNumber, props.gamesIsOverHandler])
+  }, [currentGuess, props.userChosenNumber, props.gamesIsOverHandler]);
 
   function nextGuessHandler(direction) {
     if (
@@ -52,6 +50,7 @@ function GameScreen(props) {
       maxBound,
       currentGuess
     );
+    setGuessArray((prevGuessArray) => [...guessArray, newRndNumber]);
     setCurrentGuess(newRndNumber);
   }
 
@@ -70,6 +69,22 @@ function GameScreen(props) {
           </PrimaryButton>
         </View>
       </View>
+      <View style={styles.logContainer}>
+        {/* should render logs here */}
+        <Text>logs :</Text>
+        <FlatList
+          data={guessArray}
+          renderItem={(itemData) => (
+            <Text>
+              #{itemData.index}. Your Computer Guess is {itemData.item}
+            </Text>
+          )}
+          keyExtractor={(item) => {
+            item;
+          }}
+        />
+        <Text>asd</Text>
+      </View>
     </View>
   );
 }
@@ -83,5 +98,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
+  },
+  logContainer: {
+    // flex: 1,
   },
 });

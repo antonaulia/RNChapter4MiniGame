@@ -17,6 +17,11 @@ export default function App() {
     setGameIsOver(true);
   }
 
+  function gameRestartHandler(){
+    setGameIsOver(true),
+    setUserNumber()
+  }
+
   let screen = <StartGameScreen onNumberPicked={userNumberHandler} />;
   if (userNumber) {
     screen = (
@@ -28,7 +33,7 @@ export default function App() {
   }
 
   if (userNumber && gameIsOver) {
-    screen = <GameOverScreen />;
+    screen = <GameOverScreen onRestartGame={gameRestartHandler} />;
   }
 
   return (

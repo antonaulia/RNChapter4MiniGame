@@ -34,20 +34,23 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     margin: 4,
     overflow: "hidden",
-    flex : 1
+    flex : 1,
+    // justifyContent: 'center',
+    // alignItems: 'center'
   },
   buttonContainer: {
     backgroundColor: "#4e0329",
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
     elevation: 2,
     shadowColor: "black",
     shadowOpacity: 0.5,
     shadowRadius: 2,
-    shadowOffset: { width: 2, height: 2 },
+    shadowOffset: { width: 2, height: 2 }
   },
   buttonText: {
     color: "yellow",
     textAlign: "center",
+    fontSize : 20
   },
 });
